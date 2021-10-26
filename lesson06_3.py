@@ -1,10 +1,21 @@
-for line in file
-    stuff_info = line.split()
-    stuff.update({stuff_info[0]: float(stuff_info[1])})
-    wage += float(stuff_info[1])
-average_wage = wage / len(stuff)
-print(f'Средняя з/п = {average_wage}')
+class Worker:
+    def __init__(self, name, surname, position, wage, bonus):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {"wage": wage, "bonus": bonus}
 
-for n, k in stuff.items():
-    if k < 20000:
-        print(f'{n}: {k}')
+class Position(Worker):
+        def get_full_name(self):
+            info = "{0} {1}".format(self.name, self.surname)
+            return info
+        def get_total_income(self):
+            return self._income['wage'] + self._income['bonus']
+
+employee = Position("Nik", "Odent", "engineer", 80000, 10000)
+print(employee.name)
+print(employee.surname)
+print(employee.position)
+print(employee._income)
+print(employee.get_full_name())
+print(f'Total incom: ', employee.get_total_income())
